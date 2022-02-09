@@ -18,14 +18,13 @@ namespace ESP8266OTA {
             type = "filesystem";
         }
 
-        // NOTE: if updating FS this would be the place to unmount FS using FS.end()
-
         if (Serial.available()) {
             if (Serial.baudRate() != 115200) {
                 Serial.updateBaudRate(115200);
             }
         } else Serial.begin(115200);
 
+        // NOTE: if updating FS this would be the place to unmount FS using FS.end()
         Serial.println("Start updating " + type);
         });
         ArduinoOTA.onEnd([]() {
