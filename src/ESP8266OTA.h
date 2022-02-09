@@ -12,8 +12,7 @@
 #include <ArduinoOTA.h>
 
 namespace ESP8266OTA {
-    void init(const char *ssid, const char *pass = "", const int serialBaud = 115200);
-    void init(const char *ssid, const int serialBaud = 115200);
+    void init(const char *ssid, const char *pass = "");
     void handle();
 }
 
