@@ -14,7 +14,6 @@ void loop() {
   ESP8266OTA::handle();
 }
 ```
-- ***note:** this begins the serial, with a default baud speed of `115200`. [how to change the baud speed](https://github.com/MaiTheLord/ESP8266OTA/edit/master/README.md#changing-the-serial-baud-speed)*
 
 - ***note:** make sure not to use `delay()`, as this might cause the ESP8266 to miss upload requests! use timers instead.*
 *for example:*
@@ -46,14 +45,4 @@ void loop() {
 To set a password for the access point, just pass it as the second parameter of `init()`, like this:
 ```cpp
 ESP8266OTA::init("SSID", "PASS");
-```
----
-
-### Changing the serial baud speed
-To change the serial baud speed, pass the desired speed as the second parameter of `init()`, or as the third parameter, if using a password:
-```cpp
-ESP8266OTA::init("SSID", 115200);
-```
-```cpp
-ESP8266OTA::init("SSID", "PASS", 115200);
 ```
