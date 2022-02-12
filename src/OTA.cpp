@@ -24,13 +24,13 @@ namespace OTA {
         });
 
         ArduinoOTA.onError([](ota_error_t error) {
-            Serial.printf("Error[%u]: ", error);
+            Terminal::println("Error " + String(error) + ": ");
             switch (error) {
-                case OTA_AUTH_ERROR: Serial.println("Auth Failed"); break;
-                case OTA_BEGIN_ERROR: Serial.println("Begin Failed"); break;
-                case OTA_CONNECT_ERROR: Serial.println("Connect Failed"); break;
-                case OTA_RECEIVE_ERROR: Serial.println("Receive Failed"); break;
-                case OTA_END_ERROR: Serial.println("End Failed"); break;
+                case OTA_AUTH_ERROR: Terminal::println("Auth Failed"); break;
+                case OTA_BEGIN_ERROR: Terminal::println("Begin Failed"); break;
+                case OTA_CONNECT_ERROR: Terminal::println("Connect Failed"); break;
+                case OTA_RECEIVE_ERROR: Terminal::println("Receive Failed"); break;
+                case OTA_END_ERROR: Terminal::println("End Failed"); break;
             }
         });
 
