@@ -18,17 +18,7 @@ namespace ESP8266OTA {
         WiFi.softAP(ssid, pass, 1, 0, maxConnections);
 
         OTA::init();
-
-        Terminal::server.on("/", []() {
-            Terminal::server.send(200, "text/raw", "Hello World!"); //make front-end
-        });
-        Terminal::server.on("/fetch", []() {
-
-        });
-        Terminal::server.on("/send", []() {
-
-        });
-        Terminal::server.begin();
+        Terminal::init();
     }
 
     /**
@@ -43,6 +33,6 @@ namespace ESP8266OTA {
 
     void handle() {
         OTA::handle();
-        Terminal::server.handleClient();
+        Terminal::handle();
     }
 }

@@ -14,6 +14,9 @@ namespace Terminal {
     extern ESP8266WebServer server;
     extern String outgoing;
 
+    void init();
+    void handle();
+
     void print(String str);
     void println(String str);
 }
