@@ -1,3 +1,9 @@
+/*
+    Terminal.cpp - ESP8266 OTA Library
+    Created by Mai Porat.
+    Released into the public domain.
+ */
+
 #include "Terminal.h"
 
 namespace Terminal {
