@@ -9,7 +9,7 @@
 
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
-#include <ArduinoOTA.h>
+#include "OTA.h"
 #include "Terminal.h"
 
 namespace ESP8266OTA {
