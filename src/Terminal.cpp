@@ -11,16 +11,16 @@ namespace Terminal {
     String outgoing = "";
 
     void init() {
-        Terminal::server.on("/", []() {
-            Terminal::server.send(200, "text/raw", "Hello World!"); //make front-end
+        server.on("/", []() {
+            server.send(200, "text/raw", "Hello World!"); //make front-end
         });
-        Terminal::server.on("/fetch", []() {
+        server.on("/fetch", []() {
 
         });
-        Terminal::server.on("/send", []() {
+        server.on("/send", []() {
 
         });
-        Terminal::server.begin();
+        server.begin();
     }
 
     void handle() {
