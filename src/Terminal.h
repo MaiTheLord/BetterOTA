@@ -11,14 +11,12 @@
 #include <ESP8266WebServer.h>
 
 namespace Terminal {
-    extern ESP8266WebServer server;
-    extern String outgoing;
-
     void init();
     void handle();
+    void onAvailable(const std::function<void(String)>& func);
 
-    void print(String str);
-    void println(String str);
+    void print(const String& str);
+    void println(const String& str);
 }
 
 #endif //Terminal_h
