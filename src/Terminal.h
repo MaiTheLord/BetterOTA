@@ -26,9 +26,9 @@ namespace Terminal {
         });
         server.on("/send", []() {
             if (!server.hasArg("msg")) {
-
+                server.send(400, "text", "No message");
             } else {
-                server.send(200, "text/raw", "Message received.");
+                server.send(200, "text", "Message received");
                 handler(server.arg("msg"));
             }
         });
