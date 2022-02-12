@@ -13,8 +13,8 @@
 #include "Terminal.h"
 
 namespace ESP8266OTA {
-    void init(const char *ssid, const char *pass = "", const int maxConnections = 1);
-    void init(const char *ssid, const int maxConnections);
+    void init(const char *ssid, const char *pass = "", int maxConnections = 1);
+    void init(const char *ssid, int maxConnections);
     void handle();
 }
 
