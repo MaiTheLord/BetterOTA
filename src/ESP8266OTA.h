@@ -18,4 +18,4 @@ namespace ESP8266OTA {
     void handle();
 }
 
-#endif
+#endif //ESP8266OTA_h

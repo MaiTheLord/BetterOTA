@@ -18,4 +18,4 @@ namespace Terminal {
     void println(String str);
 }
 
-#endif
+#endif //Terminal_h
