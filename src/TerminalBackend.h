@@ -14,17 +14,19 @@ namespace TerminalBackend {
     inline std::function<void(String)> handler = [](const String& str) {};
     inline ESP8266WebServer server(160);
     inline String outgoing = "";
-    inline IPAddress currentClient;
-    inline unsigned long lastFetch = millis() - 1000;
+
+    bool isFree();
 
     inline void init() {
         server.on("/", []() {
-            server.send(200, "text", "Hello World!"); //make front-end
+            if (!isFree()) return;
+            server.send(200, "text", "Hello World!"); //build front-end
         });
         server.on("/fetch", []() {
-
+            if (!isFree()) return;
         });
         server.on("/send", []() {
+            if (!isFree()) return;
             if (!server.hasArg("msg")) {
                 server.send(400, "text", "No message");
             } else {
