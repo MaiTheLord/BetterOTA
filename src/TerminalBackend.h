@@ -18,24 +18,33 @@ namespace TerminalBackend {
     bool isFree();
 
     inline void init() {
-        server.on("/", []() {
+        server.on("/", HTTP_GET, []() {
             if (!isFree()) return;
-            server.send(200, "text", "Hello World!"); //build front-end
+            server.send(200, "text/html", "");
         });
-        server.on("/fetch", []() {
+        server.on("/style.css", HTTP_GET, []() {
+            if (!isFree()) return;
+            server.send(200, "text/css", "");
+        });
+        server.on("/script.js", HTTP_GET, []() {
+            if (!isFree()) return;
+            server.send(200, "application/javascript", "");
+        });
+
+        server.on("/fetch", HTTP_GET, []() {
             if (!isFree()) return;
             if (outgoing == "") {
-                server.send(204, "text", "Already up to date");
+                server.send(204, "text/plain", "Already up to date");
             }
-            server.send(200, "text", outgoing);
+            server.send(200, "text/strings", outgoing);
             outgoing = "";
         });
-        server.on("/send", []() {
+        server.on("/send", HTTP_GET, []() {
             if (!isFree()) return;
             if (!server.hasArg("msg")) {
-                server.send(400, "text", "No message");
+                server.send(400, "text/plain", "No message");
             } else {
-                server.send(202, "text", "Message received");
+                server.send(202, "text/plain", "Message received");
                 handler(server.arg("msg"));
             }
         });
