@@ -24,13 +24,18 @@ namespace TerminalBackend {
         });
         server.on("/fetch", []() {
             if (!isFree()) return;
+            if (outgoing == "") {
+                server.send(204, "text", "Already up to date");
+            }
+            server.send(200, "text", outgoing);
+            outgoing = "";
         });
         server.on("/send", []() {
             if (!isFree()) return;
             if (!server.hasArg("msg")) {
                 server.send(400, "text", "No message");
             } else {
-                server.send(200, "text", "Message received");
+                server.send(202, "text", "Message received");
                 handler(server.arg("msg"));
             }
         });
