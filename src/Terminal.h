@@ -4,8 +4,8 @@
     Released into the public domain.
 */
 
-#ifndef TERMINAL_h
-#define TERMINAL_h
+#ifndef TERMINAL_H
+#define TERMINAL_H
 
 #include <Arduino.h>
 
@@ -16,4 +16,4 @@ namespace Terminal {
     void println(const String& str);
 }
 
-#endif //TERMINAL_h
+#endif //TERMINAL_H

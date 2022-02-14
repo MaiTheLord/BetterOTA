@@ -4,8 +4,8 @@
     Released into the public domain.
 */
 
-#ifndef ESP8266OTA_h
-#define ESP8266OTA_h
+#ifndef ESP8266OTA_H
+#define ESP8266OTA_H
 
 #include <Arduino.h>
 #include "Terminal.h"
@@ -33,4 +33,4 @@ namespace ESP8266OTA {
     void handle();
 }
 
-#endif //ESP8266OTA_h
+#endif //ESP8266OTA_H
