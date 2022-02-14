@@ -28,10 +28,12 @@ void TerminalBackend::init() {
         if (!isFree()) return;
         server.send(200, "text/html", INDEX_HTML);
     });
+
     server.on("/style.css", HTTP_GET, []() {
         if (!isFree()) return;
         server.send(200, "text/css", STYLE_CSS);
     });
+
     server.on("/script.js", HTTP_GET, []() {
         if (!isFree()) return;
         server.send(200, "application/javascript", SCRIPT_JS);
@@ -41,18 +43,21 @@ void TerminalBackend::init() {
         if (!isFree()) return;
         if (outgoing == "") {
             server.send(204, "text/plain", "Already up to date");
+        } else {
+            server.send(200, "text/strings", outgoing);
+            outgoing = "";
         }
-        server.send(200, "text/strings", outgoing);
-        outgoing = "";
     });
-    server.on("/send", HTTP_GET, []() {
+
+    server.on("/send", HTTP_POST, []() {
         if (!isFree()) return;
-        if (!server.hasArg("msg")) {
+        if (server.args() == 0) {
             server.send(400, "text/plain", "No message");
         } else {
             server.send(202, "text/plain", "Message received");
-            handler(server.arg("msg"));
+            handler(server.arg(0));
         }
     });
+
     server.begin();
 }

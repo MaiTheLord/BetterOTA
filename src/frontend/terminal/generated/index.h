@@ -20,10 +20,10 @@ const char* INDEX_HTML = R"(
     <div id="title"><p>Terminal</p></div>
     <div id="log"></div>
 
-    <form id="message_form" action="">
-        <input id="message_input" type="text"/>
-        <input id="send_button" type="submit" value="send"/>
-    </form>
+    <div id="message_line">
+        <input id="message_input" name="msg" type="text" autocapitalize="off"/>
+        <button id="send_button">send</button>
+    </div>
 </div>
 
 <script src="script.js"></script>

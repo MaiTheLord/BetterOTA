@@ -7,14 +7,15 @@
 
 const char* STYLE_CSS = R"(
 body {
-    margin: 2vw auto;
+    margin: 2vw 2vw 0 2vw;
 }
 
 #wrapper {
-    margin: 0 auto;
     background: #efefef;
-    width: 96%;
     border: 2px solid #000000;
+    height: calc(100vh - 4vw);
+    display: flex;
+    flex-direction: column;
 }
 
 #title {
@@ -26,13 +27,13 @@ body {
     margin: 0 25px auto;
     padding: 10px;
     background: #ffffff;
-    height: 200px;
     border: 1px solid #000000;
     overflow: auto;
     white-space: pre-line;
+    flex: 1;
 }
 
-#message_form {
+#message_line {
     padding: 15px 25px;
     display: flex;
     gap: 10px;
