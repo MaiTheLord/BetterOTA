@@ -5,7 +5,7 @@
 #ifndef STYLE_H
 #define STYLE_H
 
-const char* STYLE = R"(
+const char* STYLE_CSS = R"(
 body {
     margin: 2vw auto;
 }
@@ -26,7 +26,7 @@ body {
     margin: 0 25px auto;
     padding: 10px;
     background: #ffffff;
-    height: 100px;
+    height: 200px;
     border: 1px solid #000000;
     overflow: auto;
     white-space: pre-line;

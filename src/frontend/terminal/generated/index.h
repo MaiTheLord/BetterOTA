@@ -5,7 +5,7 @@
 #ifndef INDEX_H
 #define INDEX_H
 
-const char* INDEX = R"(
+const char* INDEX_HTML = R"(
 <!DOCTYPE html>
 <html lang="en">
 

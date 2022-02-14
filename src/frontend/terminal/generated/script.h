@@ -5,7 +5,7 @@
 #ifndef SCRIPT_H
 #define SCRIPT_H
 
-const char* SCRIPT = R"(
+const char* SCRIPT_JS = R"(
 document.getElementById("log").innerHTML = "first line \n second line";
 )";
 

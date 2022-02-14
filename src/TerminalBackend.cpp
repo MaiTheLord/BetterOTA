@@ -26,15 +26,15 @@ bool isFree() {
 void TerminalBackend::init() {
     server.on("/", HTTP_GET, []() {
         if (!isFree()) return;
-        server.send(200, "text/html", INDEX);
+        server.send(200, "text/html", INDEX_HTML);
     });
     server.on("/style.css", HTTP_GET, []() {
         if (!isFree()) return;
-        server.send(200, "text/css", STYLE);
+        server.send(200, "text/css", STYLE_CSS);
     });
     server.on("/script.js", HTTP_GET, []() {
         if (!isFree()) return;
-        server.send(200, "application/javascript", SCRIPT);
+        server.send(200, "application/javascript", SCRIPT_JS);
     });
 
     server.on("/fetch", HTTP_GET, []() {
