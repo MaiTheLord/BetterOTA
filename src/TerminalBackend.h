@@ -4,8 +4,8 @@
     Released into the public domain.
 */
 
-#ifndef TerminalBackend_h
-#define TerminalBackend_h
+#ifndef TERMINAL_BACKEND_h
+#define TERMINAL_BACKEND_h
 
 #include <Arduino.h>
 #include <ESP8266WebServer.h>
@@ -56,4 +56,4 @@ namespace TerminalBackend {
     }
 }
 
-#endif //TerminalBackend_h
+#endif //TERMINAL_BACKEND_h
