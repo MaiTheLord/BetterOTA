@@ -12,44 +12,10 @@
 
 namespace TerminalBackend {
     inline std::function<void(String)> handler = [](const String& str) {};
-    inline ESP8266WebServer server(160);
     inline String outgoing = "";
+    inline ESP8266WebServer server(160);
 
-    bool isFree();
-
-    inline void init() {
-        server.on("/", HTTP_GET, []() {
-            if (!isFree()) return;
-            server.send(200, "text/html", "");
-        });
-        server.on("/style.css", HTTP_GET, []() {
-            if (!isFree()) return;
-            server.send(200, "text/css", "");
-        });
-        server.on("/script.js", HTTP_GET, []() {
-            if (!isFree()) return;
-            server.send(200, "application/javascript", "");
-        });
-
-        server.on("/fetch", HTTP_GET, []() {
-            if (!isFree()) return;
-            if (outgoing == "") {
-                server.send(204, "text/plain", "Already up to date");
-            }
-            server.send(200, "text/strings", outgoing);
-            outgoing = "";
-        });
-        server.on("/send", HTTP_GET, []() {
-            if (!isFree()) return;
-            if (!server.hasArg("msg")) {
-                server.send(400, "text/plain", "No message");
-            } else {
-                server.send(202, "text/plain", "Message received");
-                handler(server.arg("msg"));
-            }
-        });
-        server.begin();
-    }
+    void init();
 
     inline void handle() {
         server.handleClient();
