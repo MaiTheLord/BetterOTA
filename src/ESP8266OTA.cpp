@@ -9,16 +9,14 @@
 #include "OTA.h"
 #include "TerminalBackend.h"
 
-namespace ESP8266OTA {
-    void init(const char *ssid, const char *pass, const int maxConnections) {
-        WiFi.softAP(ssid, pass, 1, 0, maxConnections);
+void ESP8266OTA::init(const char *ssid, const char *pass, const int maxConnections) {
+    WiFi.softAP(ssid, pass, 1, 0, maxConnections);
 
-        OTA::init();
-        TerminalBackend::init();
-    }
+    OTA::init();
+    TerminalBackend::init();
+}
 
-    void handle() {
-        OTA::handle();
-        TerminalBackend::handle();
-    }
+void ESP8266OTA::handle() {
+    OTA::handle();
+    TerminalBackend::handle();
 }

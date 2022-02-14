@@ -8,16 +8,14 @@
 #include "TerminalBackend.h"
 #include <utility>
 
-namespace Terminal {
-    void setHandler(std::function<void(String)> handler) {
-        TerminalBackend::handler = std::move(handler);
-    }
+void Terminal::setHandler(std::function<void(String)> handler) {
+    TerminalBackend::handler = std::move(handler);
+}
 
-    void print(const String& str) {
-        TerminalBackend::outgoing += str;
-    }
+void Terminal::print(const String& str) {
+    TerminalBackend::outgoing += str;
+}
 
-    void println(const String& str) {
-        TerminalBackend::outgoing += str + "\n";
-    }
+void Terminal::println(const String& str) {
+    TerminalBackend::outgoing += str + "\n";
 }
