@@ -6,8 +6,8 @@
 
 #include "ESP8266OTA.h"
 #include <ESP8266WiFi.h>
-#include "OTA.h"
-#include "TerminalBackend.h"
+#include "ota/OTA.h"
+#include "terminal/TerminalBackend.h"
 
 void ESP8266OTA::init(const char *ssid, const char *pass, const int maxConnections) {
     WiFi.softAP(ssid, pass, 1, 0, maxConnections);

@@ -9,7 +9,7 @@
 
 #include <Arduino.h>
 #include <ArduinoOTA.h>
-#include "Terminal.h"
+#include "../terminal/Terminal.h"
 
 namespace OTA {
     inline void init() {

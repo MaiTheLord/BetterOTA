@@ -8,7 +8,7 @@
 #define ESP8266OTA_H
 
 #include <Arduino.h>
-#include "Terminal.h"
+#include "terminal/Terminal.h"
 
 namespace ESP8266OTA {
     /**
