@@ -5,9 +5,9 @@
 */
 
 #include "TerminalBackend.h"
-#include "frontend/terminal/generated/index.h"
-#include "frontend/terminal/generated/style.h"
-#include "frontend/terminal/generated/script.h"
+#include "frontend/terminal/index.h"
+#include "frontend/terminal/style.h"
+#include "frontend/terminal/script.h"
 
 IPAddress currentClient;
 unsigned long lastFetch = 0;

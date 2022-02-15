@@ -13,13 +13,9 @@ const char* %s = R"(
 '
 
 def generate_file(source, target, include_guard, const_name)
-  File.open("generated/" + target, 'w') do |f|
+  File.open("../" + target, 'w') do |f|
     f.write(TEMPLATE % [include_guard, include_guard, const_name, File.read(source), include_guard])
   end
-end
-
-unless Dir.exist?("generated")
-  Dir.mkdir("generated")
 end
 
 generate_file("index.html", "index.h", "INDEX_H", "INDEX_HTML")
