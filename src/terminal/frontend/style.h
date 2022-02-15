@@ -20,6 +20,13 @@ body {
 
 #title {
     padding: 0 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
+#disconnected_message {
+    color: #ff0000;
 }
 
 #log {

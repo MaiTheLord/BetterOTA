@@ -17,7 +17,10 @@ const char* INDEX_HTML = R"(
 
 <body>
 <div id="wrapper">
-    <div id="title"><p>Terminal</p></div>
+    <div id="title">
+        <p>Terminal</p>
+        <p id="disconnected_message">disconnected</p>
+    </div>
     <div id="log"></div>
 
     <div id="message_line">

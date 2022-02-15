@@ -14,7 +14,7 @@ function send() {
         method: "POST",
         headers: { "Content-Type": "text/strings" },
         body: messageInput.value
-    });
+    }).then(response => { if (response.ok) hideDisconnectedMessage(); }).catch(showDisconnectedMessage);
     messageInput.value = "";
 }
 
@@ -25,19 +25,30 @@ messageInput.addEventListener("keyup", (event) => {
   }
 });
 
-document.getElementById("send_button").onclick = () => send();
+document.getElementById("send_button").onclick = send;
 
 
 setInterval(() => {
     fetch("/fetch").then(response => {
+        if (!response.ok) return;
+        hideDisconnectedMessage();
         if (response.status === 200) response.text().then(text => {
             const log = document.getElementById("log");
             const shouldScroll = (log.scrollHeight - log.scrollTop - log.clientHeight < 1);
             log.innerHTML += text;
             if (shouldScroll) log.scrollTop = log.scrollHeight;
         });
-    });
+    }).catch(showDisconnectedMessage);
 }, 500);
+
+
+function showDisconnectedMessage() {
+    document.getElementById("disconnected_message").style.display = "block";
+}
+
+function hideDisconnectedMessage() {
+    document.getElementById("disconnected_message").style.display = "none";
+}
 )";
 
 #endif //SCRIPT_H
