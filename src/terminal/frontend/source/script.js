@@ -24,7 +24,7 @@ setInterval(() => {
     fetch("/fetch").then(response => {
         if (response.status === 200) response.text().then(text => {
             const log = document.getElementById("log");
-            const shouldScroll = log.scrollTop === log.scrollHeight;
+            const shouldScroll = (log.scrollHeight - log.scrollTop - log.clientHeight < 1);
             log.innerHTML += text;
             if (shouldScroll) log.scrollTop = log.scrollHeight;
         });
