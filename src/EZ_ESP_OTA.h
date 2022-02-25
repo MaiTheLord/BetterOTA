@@ -1,6 +1,12 @@
 #ifndef ESP8266OTA_H
 #define ESP8266OTA_H
 
+#ifdef ESP8266
+#elif defined(ESP32)
+#else
+    #error "This library only supports boards with ESP8266 or ESP32 processors."
+#endif
+
 #include <Arduino.h>
 #include "terminal/Terminal.h"
 

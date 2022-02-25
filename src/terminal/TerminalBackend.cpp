@@ -53,5 +53,5 @@ void TerminalBackend::init() {
         }
     });
 
-    server.begin(); //TODO verify if this will work with ESP32 API
+    server.begin();
 }

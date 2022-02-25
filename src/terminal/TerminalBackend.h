@@ -12,7 +12,11 @@
 namespace TerminalBackend {
     inline std::function<void(String)> handler = [](const String& str) {};
     inline String outgoing = "";
-    inline ESP8266WebServer server(160); //TODO verify if this will work with ESP32 API
+    #ifdef ESP8266
+        inline ESP8266WebServer server(160);
+    #elif defined(ESP32)
+        inline WiFiServer server(160);
+    #endif
 
     void init();
 
