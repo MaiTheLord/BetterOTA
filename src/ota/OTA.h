@@ -10,7 +10,7 @@ namespace OTA {
     inline void init() {
         ArduinoOTA.onStart([]() {
             // NOTE: if updating FS this would be the place to unmount FS using FS.end()
-            TerminalBackend::server.close();
+            TerminalBackend::server.close(); //TODO verify if this will work with ESP32 API
         });
 
         ArduinoOTA.begin();
