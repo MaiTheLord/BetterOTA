@@ -3,6 +3,15 @@
 #include "frontend/style.h"
 #include "frontend/script.h"
 
+std::function<void(String)> TerminalBackend::handler = [](const String& str) {};
+String TerminalBackend::outgoing = "";
+
+#ifdef ESP8266
+    ESP8266WebServer TerminalBackend::server(160);
+#elif defined(ESP32)
+    WiFiServer TerminalBackend::server(160);
+#endif
+
 IPAddress currentClient; //TODO make sure ESP32 supports this
 unsigned long lastFetch = 0;
 
