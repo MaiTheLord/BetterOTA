@@ -2,6 +2,7 @@
 #define TERMINAL_H
 
 #include <Arduino.h>
+#include <functional>
 
 namespace Terminal {
     void setHandler(std::function<void(String)> handler);

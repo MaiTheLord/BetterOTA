@@ -10,7 +10,7 @@
 #endif
 
 namespace TerminalBackend {
-    inline std::function<void(String)> handler = [](const String& str) {};
+    inline std::function<void(String)> handler = [](const String& str) {}; //TODO ESP32 doesn't like inline variables
     inline String outgoing = "";
     #ifdef ESP8266
         inline ESP8266WebServer server(160);
@@ -21,7 +21,7 @@ namespace TerminalBackend {
     void init();
 
     inline void handle() {
-        server.handleClient(); //TODO verify if this will work with ESP32 API
+        server.handleClient(); //TODO find replacement for ESP32
     }
 }
 
