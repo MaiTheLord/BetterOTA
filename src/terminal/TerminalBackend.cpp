@@ -9,40 +9,40 @@ String TerminalBackend::outgoing = "";
 #ifdef ESP8266
     ESP8266WebServer TerminalBackend::server(160);
 #elif defined(ESP32)
-    WiFiServer TerminalBackend::server(160);
+    WebServer TerminalBackend::server(160);
 #endif
 
-IPAddress currentClient; //TODO make sure ESP32 supports this
+IPAddress currentClient;
 unsigned long lastFetch = 0;
 
 bool isFree() {
-    if (currentClient == TerminalBackend::server.client().remoteIP() || millis() - lastFetch > 1000) { //TODO find replacement for ESP32
+    if (currentClient == TerminalBackend::server.client().remoteIP() || millis() - lastFetch > 1000) {
         lastFetch = millis();
-        currentClient = TerminalBackend::server.client().remoteIP(); //TODO find replacement for ESP32
+        currentClient = TerminalBackend::server.client().remoteIP();
         return true;
     } else {
-        TerminalBackend::server.send(503, "text", "Another client is currently connected"); //TODO find replacement for ESP32
+        TerminalBackend::server.send(503, "text", "Another client is currently connected");
         return false;
     }
 }
 
 void TerminalBackend::init() {
-    server.on("/", HTTP_GET, []() { //TODO find replacement for ESP32
+    server.on("/", HTTP_GET, []() {
         if (!isFree()) return;
         server.send(200, "text/html", INDEX_HTML);
     });
 
-    server.on("/style.css", HTTP_GET, []() { //TODO find replacement for ESP32
+    server.on("/style.css", HTTP_GET, []() {
         if (!isFree()) return;
         server.send(200, "text/css", STYLE_CSS);
     });
 
-    server.on("/script.js", HTTP_GET, []() { //TODO find replacement for ESP32
+    server.on("/script.js", HTTP_GET, []() {
         if (!isFree()) return;
         server.send(200, "application/javascript", SCRIPT_JS);
     });
 
-    server.on("/fetch", HTTP_GET, []() { //TODO find replacement for ESP32
+    server.on("/fetch", HTTP_GET, []() {
         if (!isFree()) return;
         if (outgoing == "") {
             server.send(204, "text/plain", "Already up to date");
@@ -52,7 +52,7 @@ void TerminalBackend::init() {
         }
     });
 
-    server.on("/send", HTTP_POST, []() { //TODO find replacement for ESP32
+    server.on("/send", HTTP_POST, []() {
         if (!isFree()) return;
         if (server.args() == 0) {
             server.send(400, "text/plain", "No message");

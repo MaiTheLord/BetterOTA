@@ -6,7 +6,7 @@
 #ifdef ESP8266
     #include <ESP8266WebServer.h>
 #elif defined(ESP32)
-    #include <WiFi.h>
+    #include <WebServer.h>
 #endif
 
 namespace TerminalBackend {
@@ -16,13 +16,13 @@ namespace TerminalBackend {
     #ifdef ESP8266
         extern ESP8266WebServer server;
     #elif defined(ESP32)
-        extern WiFiServer server;
+        extern WebServer server;
     #endif
 
     void init();
 
     inline void handle() {
-        server.handleClient(); //TODO find replacement for ESP32
+        server.handleClient();
     }
 }
 
