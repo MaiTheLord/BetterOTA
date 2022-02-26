@@ -1,9 +1,3 @@
-/*
-    TerminalBackend.cpp - ESP8266 OTA Library
-    Created by Mai Porat.
-    Released into the public domain.
-*/
-
 #include "TerminalBackend.h"
 #include "frontend/index.h"
 #include "frontend/style.h"

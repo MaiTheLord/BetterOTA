@@ -1,16 +1,10 @@
-/*
-    ESP8266OTA.h - ESP8266 OTA Library
-    Created by Mai Porat.
-    Released into the public domain.
-*/
-
 #ifndef ESP8266OTA_H
 #define ESP8266OTA_H
 
 #include <Arduino.h>
 #include "terminal/Terminal.h"
 
-namespace ESP8266OTA {
+namespace EZ_ESP_OTA {
     /**
      * @brief Initialize ESP8266 OTA
      *

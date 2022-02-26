@@ -1,9 +1,3 @@
-/*
-    TerminalBackend.h - ESP8266 OTA Library
-    Created by Mai Porat.
-    Released into the public domain.
-*/
-
 #ifndef TERMINAL_BACKEND_H
 #define TERMINAL_BACKEND_H
 

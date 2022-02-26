@@ -1,9 +1,3 @@
-/*
-    Terminal.h - ESP8266 OTA Library
-    Created by Mai Porat.
-    Released into the public domain.
-*/
-
 #ifndef TERMINAL_H
 #define TERMINAL_H
 
