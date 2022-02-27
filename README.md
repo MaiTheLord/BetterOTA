@@ -16,8 +16,8 @@ Make sure you have the `esp8266` board package installed if using the ESP8266, o
 
 void setup() {
     WiFi.softAP("SSID", "password"); // recommended way to create an access point.
-    OTACodeUploader.begin() // call this method if you want the code uploader to work
-    OTATerminal.begin() // call this method if you want the terminal to work
+    OTACodeUploader.begin(); // call this method if you want the code uploader to work
+    OTATerminal.begin(); // call this method if you want the terminal to work
 }
 
 void loop() {
@@ -33,8 +33,8 @@ unsigned long timer1; // timestamp of start
 
 void setup() {
     WiFi.softAP("SSID", "password");
-    OTACodeUploader.begin()
-    OTATerminal.begin()
+    OTACodeUploader.begin();
+    OTATerminal.begin();
     
     timer1 = millis();
 }
@@ -74,8 +74,8 @@ to make the bot handle incoming messages, use `OTATerminal::setHandler()` in you
 
 void setup() {
     WiFi.softAP("SSID", "password");
-    OTACodeUploader.begin()
-    OTATerminal.begin()
+    OTACodeUploader.begin();
+    OTATerminal.begin();
     
     OTATerminal::setHandler([](const String& message) {
         // handle incoming messages, for example:
