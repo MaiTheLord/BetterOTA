@@ -16,9 +16,9 @@ public:
     String outgoing = "";
 
     #ifdef ESP8266
-        ESP8266WebServer *server = new ESP8266WebServer();
+        ESP8266WebServer server;
     #elif defined(ESP32)
-        WebServer *server = new WebServer();
+        WebServer server;
     #endif
 
     Terminal() = default;

@@ -22,30 +22,30 @@ OTATerminalClass OTATerminalClass::getInstance() {
     return instance;
 }
 
-Terminal terminal;
+Terminal *terminal;
 
 void BetterOTAClass::handle() {
     ArduinoOTA.handle();
-    terminal.server->handleClient();
+    terminal->server.handleClient();
 }
 
 void OTACodeUploaderClass::begin() {
-    ArduinoOTA.onStart([]() { if (terminal.hasStarted) terminal.server->close(); });
+    ArduinoOTA.onStart([]() { if (terminal->hasStarted) terminal->server.close(); });
     ArduinoOTA.begin();
 }
 
 void OTATerminalClass::begin(int port) {
-    terminal = Terminal(port);
+    terminal = new Terminal(port);
 }
 
 void OTATerminalClass::setHandler(std::function<void(String)> handler) {
-    terminal.handler = std::move(handler);
+    terminal->handler = std::move(handler);
 }
 
 void OTATerminalClass::print(const String& str) {
-    terminal.outgoing += str;
+    terminal->outgoing += str;
 }
 
 void OTATerminalClass::println(const String& str) {
-    terminal.outgoing += str + "\n";
+    terminal->outgoing += str + "\n";
 }

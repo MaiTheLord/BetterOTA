@@ -3,60 +3,54 @@
 #include "frontend/style.h"
 #include "frontend/script.h"
 
-Terminal::Terminal(int port) {
+Terminal::Terminal(int port) : server{port} {
     hasStarted = true;
 
-    #ifdef ESP8266
-        server = new ESP8266WebServer(port);
-    #elif defined(ESP32)
-        server = new WebServer(port);
-    #endif
-
-    server->on("/", HTTP_GET, [this]() {
+    server.on("/", HTTP_GET, [this]() {
         if (!isFree()) return;
-        server->send(200, "text/html", INDEX_HTML);
+        server.send(200, "text/html", INDEX_HTML);
     });
 
-    server->on("/style.css", HTTP_GET, [this]() {
+    server.on("/style.css", HTTP_GET, [this]() {
         if (!isFree()) return;
-        server->send(200, "text/css", STYLE_CSS);
+        server.send(200, "text/css", STYLE_CSS);
     });
 
-    server->on("/script.js", HTTP_GET, [this]() {
+    server.on("/script.js", HTTP_GET, [this]() {
         if (!isFree()) return;
-        server->send(200, "application/javascript", SCRIPT_JS);
+        server.send(200, "application/javascript", SCRIPT_JS);
     });
 
-    server->on("/fetch", HTTP_GET, [this]() {
+    server.on("/fetch", HTTP_GET, [this]() {
         if (!isFree()) return;
         if (outgoing == "") {
-            server->send(204, "text/plain", "Already up to date");
+            server.send(204, "text/plain", "Already up to date");
         } else {
-            server->send(200, "text/strings", outgoing);
+            server.send(200, "text/strings", outgoing);
             outgoing = "";
         }
     });
 
-    server->on("/send", HTTP_POST, [this]() {
+    server.on("/send", HTTP_POST, [this]() {
         if (!isFree()) return;
-        if (server->args() == 0) {
-            server->send(400, "text/plain", "No message");
+        if (server.args() == 0) {
+            server.send(400, "text/plain", "No message");
         } else {
-            server->send(202, "text/plain", "Message received");
-            handler(server->arg(0));
+            server.send(202, "text/plain", "Message received");
+            handler(server.arg(0));
         }
     });
 
-    server->begin();
+    server.begin();
 }
 
 bool Terminal::isFree() {
-    if (currentClient == server->client().remoteIP() || millis() - lastFetch > 1000) {
+    if (currentClient == server.client().remoteIP() || millis() - lastFetch > 1000) {
         lastFetch = millis();
-        currentClient = server->client().remoteIP();
+        currentClient = server.client().remoteIP();
         return true;
     } else {
-        server->send(503, "text", "Another client is currently connected");
+        server.send(503, "text", "Another client is currently connected");
         return false;
     }
 }
