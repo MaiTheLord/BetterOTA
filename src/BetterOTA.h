@@ -39,8 +39,19 @@ public:
 
     void begin(int port = 160);
     void setHandler(std::function<void(String)> handler);
+
     void print(const String& str);
     void println(const String& str);
+
+    template <typename T>
+    inline void print(T value) {
+        print(String(value));
+    }
+
+    template <typename T>
+    inline void println(T value) {
+        println(String(value));
+    }
 };
 
 extern BetterOTAClass BetterOTA;
