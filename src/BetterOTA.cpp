@@ -2,10 +2,11 @@
 #include "terminal/Terminal.h"
 #include <ArduinoOTA.h>
 #include <utility>
-#include <cstdarg>
+
 BetterOTAClass BetterOTA = BetterOTAClass::getInstance();
 OTACodeUploaderClass OTACodeUploader = OTACodeUploaderClass::getInstance();
 OTATerminalClass OTATerminal = OTATerminalClass::getInstance();
+StrClass Str = StrClass::getInstance();
 
 BetterOTAClass BetterOTAClass::getInstance() {
     static BetterOTAClass instance;
@@ -19,6 +20,11 @@ OTACodeUploaderClass OTACodeUploaderClass::getInstance() {
 
 OTATerminalClass OTATerminalClass::getInstance() {
     static OTATerminalClass instance;
+    return instance;
+}
+
+StrClass StrClass::getInstance() {
+    static StrClass instance;
     return instance;
 }
 
@@ -44,8 +50,4 @@ void OTATerminalClass::setHandler(std::function<void(String)> handler) {
 
 void OTATerminalClass::print(const String& str) {
     terminal->outgoing += str;
-}
-
-void OTATerminalClass::println(const String& str) {
-    terminal->outgoing += str + "\n";
 }

@@ -10,50 +10,8 @@
 #endif
 
 #include <Arduino.h>
+#include "StrFormat.h"
 #include <functional>
-
-
-static int iterationCounter = 0;
-static String formatBuffer;
-
-
-String format() {
-  iterationCounter = 0;
-  return formatBuffer;
-  formatBuffer = "";
-
-}
-
-template <typename T, typename... T2>
-String format (T v1, T2... v2) {
-  if (iterationCounter == 0) {
-    iterationCounter++;
-
-    formatBuffer = String(v1);
-
-    return format(v2...);
-
-  }
-  else {
-    if (formatBuffer.indexOf("%s") != -1 ) {
-      int i = formatBuffer.indexOf("%s");
-      String left = formatBuffer.substring(0, i);
-      String right = formatBuffer.substring(i + 2, formatBuffer.length());
-      formatBuffer = left + String(v1) + right;
-      return format(v2...);
-    }
-    else
-    {
-      iterationCounter = 0;
-      return formatBuffer;
-    }
-
-
-
-  }
-
-}
-
 
 class BetterOTAClass {
 private:
@@ -84,7 +42,10 @@ public:
     void setHandler(std::function<void(String)> handler);
 
     void print(const String& str);
-    void println(const String& str);
+
+    inline void println(const String& str) {
+        print(str + "\n");
+    }
 
     template <typename T>
     inline void print(T value) {
@@ -95,10 +56,21 @@ public:
     inline void println(T value) {
         println(String(value));
     }
+
+    template <typename... T>
+    void printf(const String& base, T... args) {
+        print(StrClass::getInstance().format(base, args...));
+    }
+
+    template <typename... T>
+    void printlnf(const String& base, T... args) {
+        println(StrClass::getInstance().format(base, args...));
+    }
 };
 
 extern BetterOTAClass BetterOTA;
 extern OTACodeUploaderClass OTACodeUploader;
 extern OTATerminalClass OTATerminal;
+extern StrClass Str;
 
 #endif //BETTER_OTA_H
