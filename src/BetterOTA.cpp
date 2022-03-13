@@ -50,25 +50,43 @@ void OTATerminalClass::println(const String& str) {
     terminal->outgoing += str + "\n";
 }
 
-String format(char *str...) {
-    va_list arg_list;
-    va_start(arg_list, str);
-    String ReturnString = String(str);
+static int iterationCounter = 0;
+static String formatBuffer;
 
-    for (int i = 0; i < ReturnString.length(); i++) {
-        if (ReturnString[i] == '%') {
-            String left, right;
-            left = ReturnString.substring(0,i); // remember std::string::substr takes lenght as second parameter when Arduino's substring takes index.
-            right = ReturnString.substring(i + 2, ReturnString.length());
 
-            if (ReturnString[i + 1] == 's' || ReturnString[i + 1] == 'd') {
-                ReturnString = left + String(va_arg(arg_list, const char*)) + right;
-            } else if (ReturnString[i + 1] == 'i') {
-                ReturnString = left + String(va_arg(arg_list, int)) + right;
-            }
-        }
+String format() {
+  iterationCounter = 0;
+  return formatBuffer;
+  formatBuffer = "";
+
+}
+
+template <typename T, typename... T2>
+String format (T v1, T2... v2) {
+  if (iterationCounter == 0) {
+    iterationCounter++;
+
+    formatBuffer = String(v1);
+
+    return format(v2...);
+
+  }
+  else {
+    if (formatBuffer.indexOf("%s") != -1 ) {
+      int i = formatBuffer.indexOf("%s");
+      String left = formatBuffer.substring(0, i);
+      String right = formatBuffer.substring(i + 2, formatBuffer.length());
+      formatBuffer = left + String(v1) + right;
+      return format(v2...);
+    }
+    else
+    {
+      iterationCounter = 0;
+      return formatBuffer;
     }
 
-    va_end(arg_list);
-    return ReturnString;
+
+
+  }
+
 }
