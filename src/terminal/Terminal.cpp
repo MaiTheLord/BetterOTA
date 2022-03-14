@@ -1,7 +1,5 @@
 #include "Terminal.h"
-#include "frontend/index.h"
-#include "frontend/style.h"
-#include "frontend/script.h"
+#include "TerminalFrontend.h"
 
 Terminal::Terminal(int port) : server{port} {
     hasStarted = true;
