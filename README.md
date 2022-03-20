@@ -90,7 +90,7 @@ To make the board send text through the terminal, you can use the following func
 
 **note: `print()` and `printf()` doesn't print a newline!*
 
-**note: for more information regarding `printf()` and `printlnf()`, see [this](#Using the format function).*
+**note: for more information regarding `printf()` and `printlnf()`, see [this](#using-the-format-function).*
 
 to make the bot handle incoming messages, use `OTATerminal.setHandler()` in your `setup()` function, like this:
 ```cpp
