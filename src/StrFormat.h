@@ -6,7 +6,7 @@
 class StrClass {
 private:
     StrClass() = default;
-    inline static const String formatAffixes[] = {"%s", "%d"};
+    constexpr static const char* formatAffixes[] = {"%s", "%d"};
 
     inline static int getAffixIndex(const String& base) {
         int index = -1;
