@@ -43,10 +43,6 @@ public:
 
     void print(const String& str);
 
-    inline void println(const String& str) {
-        print(str + "\n");
-    }
-
     template <typename T>
     inline void print(T value) {
         print(String(value));
@@ -54,7 +50,7 @@ public:
 
     template <typename T>
     inline void println(T value) {
-        println(String(value));
+        print(String(value) + "\n");
     }
 
     template <typename... T>
