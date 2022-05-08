@@ -3,15 +3,16 @@
 
 #include <Arduino.h>
 
+#define FORMAT_AFFIXES {"%s", "%d"}
+
 class StrClass {
 private:
     StrClass() = default;
-    constexpr static const char* formatAffixes[] = {"%s", "%d"};
 
     inline static int getAffixIndex(const String& base) {
         int index = -1;
 
-        for (const String& affix : formatAffixes) {
+        for (const String& affix : FORMAT_AFFIXES) {
             int currentIndex = base.indexOf(affix);
             if (currentIndex > -1 && (currentIndex < index || index == -1)) index = currentIndex;
         }

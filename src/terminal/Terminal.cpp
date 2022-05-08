@@ -44,6 +44,8 @@ Terminal::Terminal(int port) : server{port} {
 
 bool Terminal::isFree() {
     if (currentClient == server.client().remoteIP() || millis() - lastFetch > 1000) {
+        if (millis() - lastFetch > 5000) outgoing = "";
+
         lastFetch = millis();
         currentClient = server.client().remoteIP();
         return true;
